@@ -36,6 +36,8 @@ public class StudentController {
     @PostMapping("/students")
     @ResponseStatus(HttpStatus.CREATED)
     public Student saveStudent(@RequestBody Student student){
+        if (student.getName()==null||student.getName().equals(""))
+       throw new RuntimeException("İsim kısmı boş bırakılamaz");
         return studentDAO.saveStudent(student);
     }
 
